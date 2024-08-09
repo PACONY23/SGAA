@@ -16,6 +16,7 @@
     <%--<link rel="stylesheet" href="<%=context%>/css/cssInicioSesion.css" /> --%>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<%=context%>/css/cssFuenteLetra.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Inicio de Sesión admin</title>
 <style>
     :root{
@@ -115,6 +116,21 @@
     .login-container a:hover {
         text-decoration: underline;
     }
+
+    /* Ocultar los mensajes de validación inicialmente */
+    .valid-feedback, .invalid-feedback {
+        display: none;
+    }
+
+    /* Mostrar los mensajes de validación cuando se aplique la clase correspondiente */
+    .is-valid ~ .valid-feedback {
+        display: block;
+    }
+
+    .is-invalid ~ .invalid-feedback {
+        display: block;
+    }
+
 </style>
 </head>
 <body>
@@ -127,11 +143,28 @@
 <div class="login-container">
     <h1>Bienvenido</h1>
     <h2>Admin</h2>
-    <form action="<%=context%>/LoginAdminS" method="post"> <!-- cambiar el metodo al post, get solo fue momentáneo-->
-        <input type="text" name="matricula" placeholder="Matrícula" required>
-        <input type="password" name="password" placeholder="Contraseña" required>
+    <form action="<%=context%>/LoginS" method="post" id="form" novalidate>
+        <div class="form-group">
+            <input type="text" name="matricula" placeholder="Matrícula" class="form-control" required pattern="^([A-ZÁÉÍÓÚÑ]{1}[a-záéíóúñ]+\s*)*$">
+            <div class="valid-feedback">El dato es correcto</div>
+            <div class="invalid-feedback">El dato es incorrecto</div>
+        </div>
+        <div class="form-group">
+            <input type="password" name="password" placeholder="Contraseña" class="form-control" required pattern="^[0-9][a-zA-Z]*$">
+            <div class="valid-feedback">El dato es correcto</div>
+            <div class="invalid-feedback">El dato es incorrecto</div>
+        </div>
         <button type="submit">Iniciar sesión</button>
     </form>
 </div>
 </body>
+<script>
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+
+
+
 </html>
